@@ -30,37 +30,37 @@ def get_production_count_by_time(start_time, end_time):
     shift_b_end = datetime.strptime(settings.SHIFT_TIMINGS["shiftB_end"], '%H::%M::%S').time()
     output = {
                 "shiftA":{
-                    "production_A":0,
-                    "production_B":0
+                    "production_A_count":0,
+                    "production_B_count":0
                 },
                 "shiftB":{
-                    "production_A":0,
-                    "production_B":0
+                    "production_A_count":0,
+                    "production_B_count":0
                 },
                 "shiftC":{
-                    "production_A":0,
-                    "production_B":0
+                    "production_A_count":0,
+                    "production_B_count":0
                 }
             }
     for record in data:
         record_datetime = datetime.fromisoformat(record["time"])
         if start_time <= record_datetime < end_time:
-            actual_time = datetime.fromisoformat(record["time"]).time()
-            if shift_a_start <= actual_time < shift_a_end:
+            record_time = datetime.fromisoformat(record["time"]).time()
+            if shift_a_start <= record_time < shift_a_end:
                 if record["production_A"]:
-                    output["shiftA"]["production_A"] += 1
+                    output["shiftA"]["production_A_count"] += 1
                 if record["production_B"]:
-                    output["shiftA"]["production_B"] += 1
-            elif shift_b_start <= actual_time < shift_b_end:
+                    output["shiftA"]["production_B_count"] += 1
+            elif shift_b_start <= record_time < shift_b_end:
                 if record["production_A"]:
-                    output["shiftB"]["production_A"] += 1
+                    output["shiftB"]["production_A_count"] += 1
                 if record["production_B"]:
-                    output["shiftB"]["production_B"] += 1
+                    output["shiftB"]["production_B_count"] += 1
             else:
                 if record["production_A"]:
-                    output["shiftC"]["production_A"] += 1
+                    output["shiftC"]["production_A_count"] += 1
                 if record["production_B"]:
-                    output["shiftC"]["production_B"] += 1 
+                    output["shiftC"]["production_B_count"] += 1
     return output
 
 def get_machine_utilization(start_time, end_time):
@@ -86,11 +86,11 @@ def get_machine_utilization(start_time, end_time):
             else:
                 total_runtime += record["runtime"]
             total_downtime += record["downtime"]
-    utilization = total_runtime / (total_runtime + total_downtime) * 100
+    utilisation = total_runtime / (total_runtime + total_downtime) * 100
     return {
         "runtime": get_time_from_seconds(total_runtime), 
         "downtime": get_time_from_seconds(total_downtime), 
-        "utilization": round(utilization, 2)
+        "utilisation": round(utilisation, 2)
         }
 
 
