@@ -9,20 +9,27 @@
     "/get_producation_count": {
       "get": {
         "tags": [
-          "Get Production Count"
+          "Question 1"
         ],
         "description": "Get the production count on given time interval.",
-        "application/x-www-form-urlencoded":{
-          "schema": {
-            "type": "object",
-            "properties": {
-              "start_time": {"type": "string"},
-              "end_time": {"type": "string"}
-              },
-            "required": true
-
+        "parameters": [
+          {
+            "in": "query",
+            "name": "start_time",
+            "schema": {
+              "type": "string",
+              "example": "2021-01-28T07:30:00z"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end_time",
+            "schema": {
+              "type": "string",
+              "example": "2021-01-28T13:30:00z"
+            }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "It will return the production count on each shift of the given time.",
@@ -41,38 +48,26 @@
     "/get_machine_utilization": {
       "get": {
         "tags": [
-          "Get machine utilization"
+          "Question 2"
         ],
         "description": "To get the machine utilization.",
         "parameters": [
           {
             "in": "query",
-            "name": "movie_name",
-            "description": "Filter by movie name.",
+            "name": "start_time",
             "schema": {
               "type": "string",
-              "example": "abcd"
+              "example": "2021-01-28T08:30:00Z"
             }
           },
           {
             "in": "query",
-            "name": "timing",
-            "description": "Filter by timing.",
+            "name": "end_time",
             "schema": {
               "type": "string",
-              "example": "13:00"
-            }
-          },
-          {
-            "in": "query",
-            "name": "location",
-            "description": "Filter by location",
-            "schema": {
-              "type": "string",
-              "example": "delhi"
+              "example": "2021-01-28T10:30:00Z"
             }
           }
-
         ],
         "responses": {
           "200": {
@@ -89,26 +84,33 @@
         }
       }
     },
-    "/delete_movie/{movie_name}": {
-      "delete": {
+    "/get_average_value": {
+      "get": {
         "tags": [
-          "Delete Movie by name"
+          "Question 3"
         ],
-        "description": "Returns hello in specified language",
+        "description": "",
         "parameters": [
           {
-            "in": "path",
-            "name": "movie_name",
-            "description": "Filter by movie name.",
+            "in": "query",
+            "name": "start_time",
             "schema": {
               "type": "string",
-              "example": "abcd"
+              "example": "2021-01-28T18:30:00Z"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end_time",
+            "schema": {
+              "type": "string",
+              "example": "2021-01-28T20:10:00Z"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "It will return a list of dict according to your filters",
+            "description": "",
             "content": {
               "text/plain": {
                 "schema": {
