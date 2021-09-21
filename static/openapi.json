@@ -71,7 +71,7 @@
         ],
         "responses": {
           "200": {
-            "description": "It will return a list of dict according to your filters",
+            "description": "",
             "content": {
               "text/plain": {
                 "schema": {
