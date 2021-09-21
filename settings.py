@@ -1,4 +1,4 @@
-SERVER_PORT = 5000
+SERVER_PORT = 8080
 
 SAMPLE_JSON_1_URL = "https://gitlab.com/-/snippets/2094509/raw/master/sample_json_1.json"
 SAMPLE_JSON_2_URL = "https://gitlab.com/-/snippets/2094509/raw/master/sample_json_2.json"
