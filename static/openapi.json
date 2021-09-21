@@ -1,0 +1,125 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Flask Server",
+    "description": "Open API for flask server"
+  },
+  "paths": {
+    "/get_producation_count": {
+      "get": {
+        "tags": [
+          "Get Production Count"
+        ],
+        "description": "Get the production count on given time interval.",
+        "application/x-www-form-urlencoded":{
+          "schema": {
+            "type": "object",
+            "properties": {
+              "start_time": {"type": "string"},
+              "end_time": {"type": "string"}
+              },
+            "required": true
+
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "It will return the production count on each shift of the given time.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "example": {"data": {}, "status": "success"}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_machine_utilization": {
+      "get": {
+        "tags": [
+          "Get machine utilization"
+        ],
+        "description": "To get the machine utilization.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "movie_name",
+            "description": "Filter by movie name.",
+            "schema": {
+              "type": "string",
+              "example": "abcd"
+            }
+          },
+          {
+            "in": "query",
+            "name": "timing",
+            "description": "Filter by timing.",
+            "schema": {
+              "type": "string",
+              "example": "13:00"
+            }
+          },
+          {
+            "in": "query",
+            "name": "location",
+            "description": "Filter by location",
+            "schema": {
+              "type": "string",
+              "example": "delhi"
+            }
+          }
+
+        ],
+        "responses": {
+          "200": {
+            "description": "It will return a list of dict according to your filters",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "example": {"data": [], "status": "success"}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete_movie/{movie_name}": {
+      "delete": {
+        "tags": [
+          "Delete Movie by name"
+        ],
+        "description": "Returns hello in specified language",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "movie_name",
+            "description": "Filter by movie name.",
+            "schema": {
+              "type": "string",
+              "example": "abcd"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "It will return a list of dict according to your filters",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "example": {"data": [], "status": "success"}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

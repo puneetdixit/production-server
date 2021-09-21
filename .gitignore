@@ -1,0 +1,17 @@
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+**.pyc
+*.py[cod]
+/.vscode
+*$py.class
+*.pyc
+.idea
+/logging_module/config/* 
+/logging_module/mappinglist/* 
+/logging_module/logs/* 
+/logging_module/root.log
+app_logs
+venv/
+*.csv
+.~lock*
+*.zip
